@@ -16,7 +16,7 @@ import javax.persistence.Table;
  * @date Sep 15, 2018 3:49:42 PM
  */
 @Entity
-@Table(name = "BA_ROLES_PERMISSIONS")
+@Table(name = "BA_ROLE_PERMISSIONS")
 @IdClass(RolePermissionsPK.class)
 public class RolePermissions implements Serializable { 
     // --------------------------------------------------------------- Constants

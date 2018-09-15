@@ -13,6 +13,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -24,6 +26,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "BA_ROLE")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Role extends BaseEntity {
     // --------------------------------------------------------------- Constants
     private static final long serialVersionUID = -1759965866316826372L;
@@ -104,7 +107,7 @@ public class Role extends BaseEntity {
     @ManyToMany(fetch = FetchType.EAGER, targetEntity = Permission.class,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE,
                     CascadeType.REFRESH})
-    @JoinTable(name = "BA_ROLES_PERMISSIONS",
+    @JoinTable(name = "BA_ROLE_PERMISSIONS",
             joinColumns = @JoinColumn(name = "ROLE_ID"),
             inverseJoinColumns = @JoinColumn(name = "PERMISSION_ID"))
     public Collection<Permission> getPermissions() {

@@ -287,7 +287,7 @@ public class User extends BaseEntity {
     @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany(targetEntity = Role.class,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "BA_USERS_ROLES",
+    @JoinTable(name = "BA_USER_ROLES",
             joinColumns = @JoinColumn(name = "USER_ID"),
             inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
     public Collection<Role> getRoles() {

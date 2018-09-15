@@ -24,7 +24,7 @@ import org.hibernate.annotations.LazyCollectionOption;
  * @date Sep 15, 2018 3:49:26 PM
  */
 @Entity
-@Table(name = "BA_PERMISSIONS")
+@Table(name = "BA_PERMISSION")
 public class Permission implements Serializable {
     // --------------------------------------------------------------- Constants
     private static final long serialVersionUID = 2735685674103566146L;

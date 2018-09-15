@@ -2,14 +2,19 @@
  * All Rights Reserved. Private and Confidential. May not be disclosed without
  * permission.
  */
-package com.sgutti.usermgt;
+package com.sgutti;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
 
 import javax.sql.DataSource;
 
+import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -29,8 +34,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories("com.ecurve")
+@EnableJpaRepositories("com.sgutti.usermgt.dao")
 @PropertySource("classpath:database.properties")
+@ComponentScan("com.sgutti.usermgt")
 public class JPAConfig {
     // --------------------------------------------------------------- Constants
     // --------------------------------------------------------- Class Variables
@@ -44,7 +50,7 @@ public class JPAConfig {
      * Create a new <code>JPAConfig </code>
      */
     public JPAConfig() {
-        // TODO Auto-generated constructor stub
+        super();
     }
 
     // ---------------------------------------------------------- Public Methods
@@ -54,9 +60,17 @@ public class JPAConfig {
         lcemfb.setJpaVendorAdapter(getJpaVendorAdapter());
         lcemfb.setDataSource(getDataSource());
         // lcemfb.setPersistenceUnitName("myJpaPersistenceUnit");
-        lcemfb.setPackagesToScan("com.ecurve");
+        lcemfb.setPackagesToScan("com.sgutti");
         lcemfb.setJpaProperties(jpaProperties());
         return lcemfb;
+    }
+
+    @Bean(name = "mapper")
+    public Mapper getMapper() {
+        List<String> mappingFiles = Arrays.asList("dozerBeanMappings.xml");
+        DozerBeanMapper dozerBean = new DozerBeanMapper();
+        dozerBean.setMappingFiles(mappingFiles);
+        return dozerBean;
     }
 
     @Bean

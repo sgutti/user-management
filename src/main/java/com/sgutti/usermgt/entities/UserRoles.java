@@ -16,7 +16,7 @@ import javax.persistence.Table;
  * @date Sep 15, 2018 3:50:33 PM
  */
 @Entity
-@Table(name = "BA_USERS_ROLES")
+@Table(name = "BA_USER_ROLES")
 @IdClass(UserRolePK.class)
 public class UserRoles implements Serializable {
     // --------------------------------------------------------------- Constants
