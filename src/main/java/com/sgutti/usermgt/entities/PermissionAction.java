@@ -1,6 +1,6 @@
 /**
- * All Rights Reserved. Private and Confidential. May not be
- * disclosed without permission.
+ * All Rights Reserved. Private and Confidential. May not be disclosed without
+ * permission.
  */
 package com.sgutti.usermgt.entities;
 
@@ -20,76 +20,79 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "BA_PERM_ACTIONS")
 public class PermissionAction implements Serializable {
-  // --------------------------------------------------------------- Constants
-  private static final long serialVersionUID = -7013956769496214844L;
-  // --------------------------------------------------------- Class Variables
-  // ----------------------------------------------------- Static Initializers
-  // ------------------------------------------------------ Instance Variables
-  private Long actionID;
-  private String name;
-  private Integer mask;
+    // --------------------------------------------------------------- Constants
+    private static final long serialVersionUID = -7013956769496214844L;
 
-  // ------------------------------------------------------------ Constructors
-  /**
-   * Create a new <code>PermissionAction</code>
-   */
-  public PermissionAction() {
-    super();
-  }
+    // --------------------------------------------------------- Class Variables
+    // ----------------------------------------------------- Static Initializers
+    // ------------------------------------------------------ Instance Variables
+    private Long actionID;
 
-  // ---------------------------------------------------------- Public Methods
-  /**
-   * @return Returns the actionID.
-   */
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "ACTION_ID", nullable = false)
-  public Long getActionID() {
-    return actionID;
-  }
+    private String name;
 
-  /**
-   * @param actionID
-   *          The actionID to set.
-   */
-  public void setActionID(Long actionID) {
-    this.actionID = actionID;
-  }
+    private Integer mask;
 
-  /**
-   * @return Returns the name.
-   */
-  @Column(name = "NAME", nullable = false, length = 100)
-  public String getName() {
-    return name;
-  }
+    // ------------------------------------------------------------ Constructors
+    /**
+     * Create a new <code>PermissionAction</code>
+     */
+    public PermissionAction() {
+        super();
+    }
 
-  /**
-   * @param name
-   *          The name to set.
-   */
-  public void setName(String name) {
-    this.name = name;
-  }
+    // ---------------------------------------------------------- Public Methods
+    /**
+     * @return Returns the actionID.
+     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ACTION_ID", nullable = false)
+    public Long getActionID() {
+        return actionID;
+    }
 
-  /**
-   * @return Returns the mask.
-   */
-  @Column(name = "MASK", nullable = false)
-  public Integer getMask() {
-    return mask;
-  }
+    /**
+     * @param actionID
+     *            The actionID to set.
+     */
+    public void setActionID(Long actionID) {
+        this.actionID = actionID;
+    }
 
-  /**
-   * @param mask
-   *          The mask to set.
-   */
-  public void setMask(Integer mask) {
-    this.mask = mask;
-  }
-  // ------------------------------------------------------- Protected Methods
-  // --------------------------------------------------------- Default Methods
-  // --------------------------------------------------------- Private Methods
-  // ---------------------------------------------------------- Static Methods
-  // ----------------------------------------------------------- Inner Classes
+    /**
+     * @return Returns the name.
+     */
+    @Column(name = "NAME", nullable = false, length = 100)
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name
+     *            The name to set.
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return Returns the mask.
+     */
+    @Column(name = "MASK", nullable = false)
+    public Integer getMask() {
+        return mask;
+    }
+
+    /**
+     * @param mask
+     *            The mask to set.
+     */
+    public void setMask(Integer mask) {
+        this.mask = mask;
+    }
+    // ------------------------------------------------------- Protected Methods
+    // --------------------------------------------------------- Default Methods
+    // --------------------------------------------------------- Private Methods
+    // ---------------------------------------------------------- Static Methods
+    // ----------------------------------------------------------- Inner Classes
 }

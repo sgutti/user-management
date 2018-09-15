@@ -53,7 +53,7 @@ public class JPAConfig {
         LocalContainerEntityManagerFactoryBean lcemfb = new LocalContainerEntityManagerFactoryBean();
         lcemfb.setJpaVendorAdapter(getJpaVendorAdapter());
         lcemfb.setDataSource(getDataSource());
-        //lcemfb.setPersistenceUnitName("myJpaPersistenceUnit");
+        // lcemfb.setPersistenceUnitName("myJpaPersistenceUnit");
         lcemfb.setPackagesToScan("com.ecurve");
         lcemfb.setJpaProperties(jpaProperties());
         return lcemfb;
