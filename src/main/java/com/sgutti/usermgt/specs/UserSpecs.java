@@ -49,7 +49,8 @@ public class UserSpecs {
                                                final String firstName,
                                                final String lastName,
                                                final boolean exactMatch) {
-        Specification<User> spec = new Specification<User>() {
+        return new Specification<User>() {
+            private static final long serialVersionUID = 4826731951694930259L;
             /**
              * @see org.springframework.data.jpa.domain.Specification#toPredicate(javax.persistence.criteria.Root,
              *      javax.persistence.criteria.CriteriaQuery,
@@ -117,7 +118,6 @@ public class UserSpecs {
                 return resultPredicate;
             }
         };
-        return spec;
     }
     // ----------------------------------------------------------- Inner Classes
 }

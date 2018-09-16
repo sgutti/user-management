@@ -265,7 +265,6 @@ public class UserServicePojo extends BaseServicePojo implements UserService {
             userRoles.setUserID(user.getUserID());
             userRoles.setRoleID(roleID);
             userRolesDAO.save(userRoles);
-            // user.setRoles(Arrays.asList(role));
             userDAO.save(user);
             result = true;
         } catch (PersistenceException pe) {

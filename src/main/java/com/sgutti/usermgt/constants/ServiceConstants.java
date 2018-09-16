@@ -19,7 +19,7 @@ public class ServiceConstants {
     /**
      * Create a new <code>ServiceConstants</code>
      */
-    public ServiceConstants() {
+    private ServiceConstants() {
         super();
     }
     // ---------------------------------------------------------- Public Methods
