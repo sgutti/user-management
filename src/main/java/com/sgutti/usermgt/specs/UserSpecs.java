@@ -64,8 +64,6 @@ public class UserSpecs {
                 Predicate resultPredicate = criteriaBuilder.conjunction();
                 resultPredicate.getExpressions().add(
                         criteriaBuilder.equal(root.get("tenantID"), tenantID));
-                String firstNameStr = null;
-                String lastNameStr = null;
                 if (exactMatch) {
                     if (StringUtils.isNotBlank(firstName)) {
                         resultPredicate.getExpressions().add(criteriaBuilder
@@ -78,12 +76,31 @@ public class UserSpecs {
                     return resultPredicate;
                 }
                 // This list will contain all Predicates (where clauses)
-                firstNameStr = firstName;
+                resultPredicate = wildSearch(firstName, lastName, root,
+                        criteriaBuilder, resultPredicate);
+                return resultPredicate;
+            }
+
+            /**
+             * @param firstName
+             * @param lastName
+             * @param root
+             * @param criteriaBuilder
+             * @param resultPredicate
+             * @param firstNameStr
+             * @return
+             */
+            private Predicate wildSearch(final String firstName,
+                                         final String lastName,
+                                         final Root<User> root,
+                                         final CriteriaBuilder criteriaBuilder,
+                                         Predicate resultPredicate) {
+                String firstNameStr = firstName;
                 if (StringUtils.isNotBlank(firstName)) {
                     firstNameStr = WILDCARD + firstName + WILDCARD;
                 }
                 //
-                lastNameStr = lastName;
+                String lastNameStr = lastName;
                 if (StringUtils.isNotBlank(lastName)) {
                     lastNameStr = WILDCARD + lastName + WILDCARD;
                 }
