@@ -104,20 +104,14 @@ public class UserSpecs {
                 if (StringUtils.isNotBlank(lastName)) {
                     lastNameStr = WILDCARD + lastName + WILDCARD;
                 }
-                if (StringUtils.isNotBlank(firstNameStr)) {
-                    Predicate fn = criteriaBuilder.like(
-                            criteriaBuilder
-                                    .lower(root.<String> get("firstName")),
-                            firstNameStr);
-                    resultPredicate = criteriaBuilder.and(fn);
-                }
-                if (StringUtils.isNotBlank(lastNameStr)) {
-                    Predicate ln = criteriaBuilder.like(
-                            criteriaBuilder
-                                    .lower(root.<String> get("lastName")),
-                            lastNameStr);
-                    resultPredicate = criteriaBuilder.and(ln);
-                }
+                Predicate fn = criteriaBuilder.like(
+                        criteriaBuilder.lower(root.<String> get("firstName")),
+                        firstNameStr);
+                resultPredicate = criteriaBuilder.and(fn);
+                Predicate ln = criteriaBuilder.like(
+                        criteriaBuilder.lower(root.<String> get("lastName")),
+                        lastNameStr);
+                resultPredicate = criteriaBuilder.and(ln);
                 return resultPredicate;
             }
         };
