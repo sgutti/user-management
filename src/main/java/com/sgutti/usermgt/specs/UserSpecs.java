@@ -51,6 +51,7 @@ public class UserSpecs {
                                                final boolean exactMatch) {
         return new Specification<User>() {
             private static final long serialVersionUID = 4826731951694930259L;
+
             /**
              * @see org.springframework.data.jpa.domain.Specification#toPredicate(javax.persistence.criteria.Root,
              *      javax.persistence.criteria.CriteriaQuery,
@@ -105,11 +106,9 @@ public class UserSpecs {
                                         .lower(root.<String> get("lastName")),
                                 lastNameStr);
                     }
-                    if (fn != null && ln != null) {
-                        resultPredicate = criteriaBuilder.and(fn, ln);
-                    } else if (fn != null && ln == null) {
+                    if (fn != null) {
                         resultPredicate = criteriaBuilder.and(fn);
-                    } else if (fn == null && ln != null) {
+                    } else if (ln != null) {
                         resultPredicate = criteriaBuilder.and(ln);
                     }
                     resultPredicate.getExpressions().add(criteriaBuilder
