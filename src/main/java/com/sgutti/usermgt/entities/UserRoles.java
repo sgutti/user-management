@@ -17,7 +17,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "BA_USER_ROLES")
-@IdClass(UserRolePK.class)
+@IdClass(UserRolePK.class) 
 public class UserRoles implements Serializable {
     // --------------------------------------------------------------- Constants
     private static final long serialVersionUID = 3733765182639241278L;

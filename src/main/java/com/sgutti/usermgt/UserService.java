@@ -18,8 +18,6 @@ import com.sgutti.usermgt.data.UserData;
  */
 public interface UserService extends BaseService {
     // --------------------------------------------------------------- Constants
-    String SERVICE_NAME = "userService";
-
     // --------------------------------------------------------- Class Variables
     // ----------------------------------------------------- Static Initializers
     // ------------------------------------------------------ Instance Variables

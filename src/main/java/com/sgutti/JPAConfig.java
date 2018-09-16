@@ -59,7 +59,6 @@ public class JPAConfig {
         LocalContainerEntityManagerFactoryBean lcemfb = new LocalContainerEntityManagerFactoryBean();
         lcemfb.setJpaVendorAdapter(getJpaVendorAdapter());
         lcemfb.setDataSource(getDataSource());
-        // lcemfb.setPersistenceUnitName("myJpaPersistenceUnit");
         lcemfb.setPackagesToScan("com.sgutti");
         lcemfb.setJpaProperties(jpaProperties());
         return lcemfb;
@@ -75,8 +74,7 @@ public class JPAConfig {
 
     @Bean
     public JpaVendorAdapter getJpaVendorAdapter() {
-        JpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
-        return adapter;
+        return new HibernateJpaVendorAdapter();
     }
 
     @Bean
@@ -92,9 +90,8 @@ public class JPAConfig {
 
     @Bean(name = "transactionManager")
     public PlatformTransactionManager txManager() {
-        JpaTransactionManager jpaTransactionManager = new JpaTransactionManager(
+        return new JpaTransactionManager(
                 getEntityManagerFactoryBean().getObject());
-        return jpaTransactionManager;
     }
 
     @Bean

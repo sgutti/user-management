@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sgutti.core.base.BaseServicePojo;
 import com.sgutti.core.exception.ApplicationException;
+import com.sgutti.usermgt.constants.ServiceConstants;
 import com.sgutti.usermgt.dao.PermissionDAO;
 import com.sgutti.usermgt.dao.RoleDAO;
 import com.sgutti.usermgt.dao.RolePermissionsDAO;
@@ -38,9 +39,23 @@ import com.sgutti.usermgt.specs.UserSpecs;
  * @author Shanmu
  * @date Jul 7, 2014 7:19:19 PM
  */
-@Service(UserService.SERVICE_NAME)
+@Service(ServiceConstants.USER_SERVICE)
 public class UserServicePojo extends BaseServicePojo implements UserService {
+    private static final String USER_SVC_0004 = "USER_SVC_0004";
+
+    private static final String UNABLE_TO_DELETE_USER = "unable to delete user";
+
+    private static final String USER_SVC_0005 = "USER_SVC_0005";
+
+    private static final String USER_DATA_CANNOT_BE_NULL = "userData cannot be null";
+
+    private static final String USER_SVC_NULL_PARAM = "USER_SVC_NULL_PARAM";
+
     // --------------------------------------------------------------- Constants
+    private static final String USER_NOT_FOUND = "user not found";
+
+    private static final String USER_SVC_USER_NOT_FOUND = "USER_SVC_USER_NOT_FOUND";
+
     // --------------------------------------------------------- Class Variables
     // ----------------------------------------------------- Static Initializers
     // ------------------------------------------------------ Instance Variables
@@ -78,7 +93,7 @@ public class UserServicePojo extends BaseServicePojo implements UserService {
         RoleData roleData = null;
         try {
             Mapper mapper = getMapper();
-            Role role = roleDAO.findByRoleID(tenantID,roleID);
+            Role role = roleDAO.findByRoleID(tenantID, roleID);
             if (role == null) {
                 throw new ApplicationException("ERR_USER_SVC_001",
                         "Role NOT found");
@@ -86,7 +101,7 @@ public class UserServicePojo extends BaseServicePojo implements UserService {
             roleData = mapper.map(role, RoleData.class);
             Collection<Permission> permissionList = role.getPermissions();
             if (permissionList != null) {
-                List<PermissionData> permissions = new ArrayList<PermissionData>();
+                List<PermissionData> permissions = new ArrayList<>();
                 for (Permission permission : permissionList) {
                     PermissionData permissionData = mapper.map(permission,
                             PermissionData.class);
@@ -113,7 +128,7 @@ public class UserServicePojo extends BaseServicePojo implements UserService {
                 .findByType(Permission.SYSTEM);
         if (permissions != null) {
             Mapper mapper = getMapper();
-            permissionsList = new ArrayList<PermissionData>();
+            permissionsList = new ArrayList<>();
             for (Permission permission : permissions) {
                 PermissionData permissionData = mapper.map(permission,
                         PermissionData.class);
@@ -138,7 +153,7 @@ public class UserServicePojo extends BaseServicePojo implements UserService {
         try {
             List<User> usersList = userDAO.findAll(UserSpecs.getWhere(tenantID,
                     firstName, lastName, exactMatch));
-            result = new ArrayList<UserData>();
+            result = new ArrayList<>();
             if (usersList != null) {
                 Mapper mapper = getMapper();
                 for (User user : usersList) {
@@ -166,7 +181,7 @@ public class UserServicePojo extends BaseServicePojo implements UserService {
         List<RoleData> result = null;
         try {
             List<Role> rolesList = roleDAO.findAll();
-            result = new ArrayList<RoleData>();
+            result = new ArrayList<>();
             if (rolesList != null) {
                 Mapper mapper = getMapper();
                 for (Role role : rolesList) {
@@ -192,8 +207,8 @@ public class UserServicePojo extends BaseServicePojo implements UserService {
             throws ApplicationException {
         boolean result = false;
         if (userData == null) {
-            throw new ApplicationException("USER_SVC_NULL_PARAM",
-                    "userData cannot be null");
+            throw new ApplicationException(USER_SVC_NULL_PARAM,
+                    USER_DATA_CANNOT_BE_NULL);
         }
         try {
             Mapper mapper = getMapper();
@@ -227,14 +242,14 @@ public class UserServicePojo extends BaseServicePojo implements UserService {
             throws ApplicationException {
         boolean result = false;
         if (userData == null) {
-            throw new ApplicationException("USER_SVC_NULL_PARAM",
-                    "userData cannot be null");
+            throw new ApplicationException(USER_SVC_NULL_PARAM,
+                    USER_DATA_CANNOT_BE_NULL);
         }
         try {
             User user = userDAO.findBy(tenantID, userData.getUserID());
             if (user == null) {
-                throw new ApplicationException("USER_SVC_USER_NOT_FOUND",
-                        "user not found");
+                throw new ApplicationException(USER_SVC_USER_NOT_FOUND,
+                        USER_NOT_FOUND);
             }
             userRolesDAO.deleteAll(user.getUserID());
             Mapper mapper = getMapper();
@@ -254,7 +269,7 @@ public class UserServicePojo extends BaseServicePojo implements UserService {
             userDAO.save(user);
             result = true;
         } catch (PersistenceException pe) {
-            throw new ApplicationException("USER_SVC_0004",
+            throw new ApplicationException(USER_SVC_0004,
                     "unable to update user", pe);
         }
         return result;
@@ -272,8 +287,8 @@ public class UserServicePojo extends BaseServicePojo implements UserService {
             userDAO.deleteBy(tenantID, userID);
             result = true;
         } catch (PersistenceException pe) {
-            throw new ApplicationException("USER_SVC_0005",
-                    "unable to delete user", pe);
+            throw new ApplicationException(USER_SVC_0005,
+                    UNABLE_TO_DELETE_USER, pe);
         }
         return result;
     }
@@ -291,8 +306,8 @@ public class UserServicePojo extends BaseServicePojo implements UserService {
         try {
             User user = userDAO.findBy(tenantID, userID);
             if (user == null) {
-                throw new ApplicationException("USER_SVC_USER_NOT_FOUND",
-                        "user not found");
+                throw new ApplicationException(USER_SVC_USER_NOT_FOUND,
+                        USER_NOT_FOUND);
             }
             user.setPassword(password);
             userDAO.save(user);
@@ -315,8 +330,8 @@ public class UserServicePojo extends BaseServicePojo implements UserService {
         try {
             User user = userDAO.findBy(tenantID, userID);
             if (user == null) {
-                throw new ApplicationException("USER_SVC_USER_NOT_FOUND",
-                        "user not found");
+                throw new ApplicationException(USER_SVC_USER_NOT_FOUND,
+                        USER_NOT_FOUND);
             }
             Mapper mapper = getMapper();
             result = mapper.map(user, UserData.class);
@@ -347,7 +362,7 @@ public class UserServicePojo extends BaseServicePojo implements UserService {
             throws ApplicationException {
         boolean result = false;
         if (roleData == null) {
-            throw new ApplicationException("USER_SVC_NULL_PARAM",
+            throw new ApplicationException(USER_SVC_NULL_PARAM,
                     "roleData cannot be null");
         }
         try {
@@ -360,10 +375,7 @@ public class UserServicePojo extends BaseServicePojo implements UserService {
             role.setCreatedBy(createdBy);
             role.setCreatedDate(currentDate.toDate());
             roleDAO.save(role);
-            // List<Permission> corePermissions = permissionDAO
-            // .findByType(Permission.CORE);
-            // permissions.addAll(corePermissions);
-            List<RolePermissions> rolePermissions = new ArrayList<RolePermissions>();
+            List<RolePermissions> rolePermissions = new ArrayList<>();
             for (Permission permission : permissions) {
                 RolePermissions rPerm = new RolePermissions();
                 rPerm.setRoleID(role.getRoleID());
@@ -371,8 +383,6 @@ public class UserServicePojo extends BaseServicePojo implements UserService {
                 rolePermissions.add(rPerm);
             }
             rolePermissionsDAO.saveAll(rolePermissions);
-            // role.setPermissions(permissions);
-            // roleDAO.save(role);
             result = true;
         } catch (PersistenceException pe) {
             throw new ApplicationException("USER_SVC_0008",
@@ -392,12 +402,11 @@ public class UserServicePojo extends BaseServicePojo implements UserService {
             throws ApplicationException {
         boolean result = false;
         if (roleData == null) {
-            throw new ApplicationException("USER_SVC_NULL_PARAM",
+            throw new ApplicationException(USER_SVC_NULL_PARAM,
                     "roleData cannot be null");
         }
         try {
             // first delete the associated permissions to the role
-            // rolePermissionsDAO.deleteAll(roleData.getRoleID());
             // Save the role
             Role role = roleDAO.findByRoleID(tenantID, roleData.getRoleID());
             DateTime currentDate = new DateTime();
@@ -412,7 +421,7 @@ public class UserServicePojo extends BaseServicePojo implements UserService {
             // Get all the selected permissions
             List<Permission> permissions = permissionDAO
                     .findBy(roleData.getPermissionIDs());
-            List<RolePermissions> rolePermissions = new ArrayList<RolePermissions>();
+            List<RolePermissions> rolePermissions = new ArrayList<>();
             for (Permission permission : permissions) {
                 RolePermissions rPerm = new RolePermissions();
                 rPerm.setRoleID(role.getRoleID());
@@ -440,7 +449,7 @@ public class UserServicePojo extends BaseServicePojo implements UserService {
         List<RoleData> result = null;
         try {
             List<Role> rolesList = roleDAO.findBy(tenantID);
-            result = new ArrayList<RoleData>();
+            result = new ArrayList<>();
             if (rolesList != null) {
                 Mapper mapper = getMapper();
                 for (Role role : rolesList) {

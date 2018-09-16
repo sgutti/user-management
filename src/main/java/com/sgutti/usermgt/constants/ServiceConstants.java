@@ -2,38 +2,27 @@
  * All Rights Reserved. Private and Confidential. May not be disclosed without
  * permission.
  */
-package com.sgutti.usermgt.dao;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-
-import com.sgutti.usermgt.entities.User;
+package com.sgutti.usermgt.constants;
 
 /**
  * @author Shanmu
- * @date Jul 7, 2014 7:05:23 PM
+ * @date Sep 16, 2018 9:55:45 AM
  */
-public interface UserDAO
-        extends JpaRepository<User, String>, JpaSpecificationExecutor<User> {
+public class ServiceConstants {
     // --------------------------------------------------------------- Constants
+    public static final String USER_SERVICE = "userService";
+
     // --------------------------------------------------------- Class Variables
     // ----------------------------------------------------- Static Initializers
     // ------------------------------------------------------ Instance Variables
     // ------------------------------------------------------------ Constructors
-    // ---------------------------------------------------------- Public Methods
     /**
-     * @param tenantID
-     * @param userID
-     * @return
+     * Create a new <code>ServiceConstants</code>
      */
-    @Query(" from User u where u.tenantID=?1 and u.userID=?2 ")
-    User findBy(long tenantID, String userID);
-
-    @Modifying
-    @Query("delete from User u where u.tenantID=?1 and u.userID=?2 ")
-    void deleteBy(long tenantID, String userID);
+    public ServiceConstants() {
+        super();
+    }
+    // ---------------------------------------------------------- Public Methods
     // ------------------------------------------------------- Protected Methods
     // --------------------------------------------------------- Default Methods
     // --------------------------------------------------------- Private Methods

@@ -17,8 +17,6 @@ import com.sgutti.usermgt.entities.Permission;
  */
 public interface PermissionDAO extends JpaRepository<Permission, Long> {
     // --------------------------------------------------------------- Constants
-    String NAME = "permissionDAO";
-
     // --------------------------------------------------------- Class Variables
     // ----------------------------------------------------- Static Initializers
     // ------------------------------------------------------ Instance Variables

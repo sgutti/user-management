@@ -50,7 +50,6 @@ public class UserRolePK implements Serializable {
     /**
      * @return Returns the userID.
      */
-    @Id
     @Column(name = "USER_ID", nullable = false, unique = true, length = 200)
     public String getUserID() {
         return userID;
@@ -67,7 +66,6 @@ public class UserRolePK implements Serializable {
     /**
      * @return Returns the roleID.
      */
-    @Id
     @Column(name = "ROLE_ID", nullable = false)
     public Long getRoleID() {
         return roleID;
@@ -79,6 +77,50 @@ public class UserRolePK implements Serializable {
      */
     public void setRoleID(final Long roleID) {
         this.roleID = roleID;
+    }
+
+    /**
+     * @see java.lang.Object#hashCode()
+     */
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((roleID == null) ? 0 : roleID.hashCode());
+        result = prime * result + ((userID == null) ? 0 : userID.hashCode());
+        return result;
+    }
+
+    /**
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        UserRolePK other = (UserRolePK) obj;
+        if (roleID == null) {
+            if (other.roleID != null) {
+                return false;
+            }
+        } else if (!roleID.equals(other.roleID)) {
+            return false;
+        }
+        if (userID == null) {
+            if (other.userID != null) {
+                return false;
+            }
+        } else if (!userID.equals(other.userID)) {
+            return false;
+        }
+        return true;
     }
     // ------------------------------------------------------- Protected Methods
     // --------------------------------------------------------- Default Methods

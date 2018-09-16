@@ -17,8 +17,6 @@ import com.sgutti.usermgt.entities.Role;
  */
 public interface RoleDAO extends JpaRepository<Role, Long> {
     // --------------------------------------------------------------- Constants
-    String NAME = "roleDAO";
-
     // --------------------------------------------------------- Class Variables
     // ----------------------------------------------------- Static Initializers
     // ------------------------------------------------------ Instance Variables
