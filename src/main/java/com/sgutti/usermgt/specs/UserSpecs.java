@@ -77,7 +77,7 @@ public class UserSpecs {
                 }
                 // This list will contain all Predicates (where clauses)
                 resultPredicate = wildSearch(firstName, lastName, root,
-                        criteriaBuilder, resultPredicate);
+                        criteriaBuilder);
                 return resultPredicate;
             }
 
@@ -86,15 +86,12 @@ public class UserSpecs {
              * @param lastName
              * @param root
              * @param criteriaBuilder
-             * @param resultPredicate
-             * @param firstNameStr
              * @return
              */
             private Predicate wildSearch(final String firstName,
                                          final String lastName,
                                          final Root<User> root,
-                                         final CriteriaBuilder criteriaBuilder,
-                                         Predicate resultPredicate) {
+                                         final CriteriaBuilder criteriaBuilder) {
                 String firstNameStr = firstName;
                 if (StringUtils.isNotBlank(firstName)) {
                     firstNameStr = WILDCARD + firstName + WILDCARD;
@@ -104,6 +101,7 @@ public class UserSpecs {
                 if (StringUtils.isNotBlank(lastName)) {
                     lastNameStr = WILDCARD + lastName + WILDCARD;
                 }
+                Predicate resultPredicate = null;
                 Predicate fn = criteriaBuilder.like(
                         criteriaBuilder.lower(root.<String> get("firstName")),
                         firstNameStr);
