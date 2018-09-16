@@ -4,8 +4,6 @@
  */
 package com.sgutti.usermgt.entities;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
@@ -14,7 +12,7 @@ import javax.persistence.MappedSuperclass;
  * @date Sep 15, 2018 3:52:02 PM
  */
 @MappedSuperclass
-public class AbstractEntity implements Serializable {
+public class AbstractEntity implements IEntity {
     // --------------------------------------------------------------- Constants
     private static final long serialVersionUID = -7760256970259070626L;
     // --------------------------------------------------------- Class Variables
