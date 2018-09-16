@@ -31,52 +31,32 @@ import org.hibernate.annotations.LazyCollectionOption;
 public class User extends BaseEntity {
     // --------------------------------------------------------------- Constants
     private static final long serialVersionUID = -2659828617752135910L;
-
     // --------------------------------------------------------- Class Variables
     // ----------------------------------------------------- Static Initializers
     // ------------------------------------------------------ Instance Variables
     private String userID;
-
     private String password;
-
     private boolean online;
-
     private boolean enabled;
-
     private boolean accountExpired;
-
     private boolean accountLocked;
-
     private boolean credentialsExpired;
-
     // date in which password must be reset, nullable
     private Date expireDate;
-
     // locks user account when failed login attempts exceed the configurable
     // limit
     private Integer failedLoginCounter;
-
     // date of termination of the user account, null if active.
     private Date terminationDate;
-
     private Date lastLoginDate;
-
     private String languageId;
-
     private String firstName;
-
     private String lastName;
-
     private String middleName;
-
     private Date dateOfBirth;
-
     private String genderCode;
-
     private String phoneNumber;
-
     private byte[] image;
-
     private Collection<Role> roles;
 
     // ------------------------------------------------------------ Constructors

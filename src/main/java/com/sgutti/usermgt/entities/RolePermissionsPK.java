@@ -17,12 +17,10 @@ import javax.persistence.Embeddable;
 public class RolePermissionsPK implements Serializable {
     // --------------------------------------------------------------- Constants
     private static final long serialVersionUID = 2578665121061513708L;
-
     // --------------------------------------------------------- Class Variables
     // ----------------------------------------------------- Static Initializers
     // ------------------------------------------------------ Instance Variables
     private Long permissionID;
-
     private Long roleID;
 
     // ------------------------------------------------------------ Constructors
@@ -109,7 +107,6 @@ public class RolePermissionsPK implements Serializable {
         }
         return true;
     }
-    
     // ------------------------------------------------------- Protected Methods
     // --------------------------------------------------------- Default Methods
     // --------------------------------------------------------- Private Methods

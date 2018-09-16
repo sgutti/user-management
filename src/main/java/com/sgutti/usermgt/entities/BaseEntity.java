@@ -17,16 +17,12 @@ import javax.persistence.MappedSuperclass;
 public class BaseEntity extends AbstractEntity {
     // --------------------------------------------------------------- Constants
     private static final long serialVersionUID = 474269060300128937L;
-
     // --------------------------------------------------------- Class Variables
     // ----------------------------------------------------- Static Initializers
     // ------------------------------------------------------ Instance Variables
     private Date createdDate;
-
     private String createdBy;
-
     private Date modifiedDate;
-
     private String modifiedBy;
 
     // ------------------------------------------------------------ Constructors

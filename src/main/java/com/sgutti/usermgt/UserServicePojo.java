@@ -42,35 +42,24 @@ import com.sgutti.usermgt.specs.UserSpecs;
 @Service(ServiceConstants.USER_SERVICE)
 public class UserServicePojo extends BaseServicePojo implements UserService {
     private static final String USER_SVC_0004 = "USER_SVC_0004";
-
     private static final String UNABLE_TO_DELETE_USER = "unable to delete user";
-
     private static final String USER_SVC_0005 = "USER_SVC_0005";
-
     private static final String USER_DATA_CANNOT_BE_NULL = "userData cannot be null";
-
     private static final String USER_SVC_NULL_PARAM = "USER_SVC_NULL_PARAM";
-
     // --------------------------------------------------------------- Constants
     private static final String USER_NOT_FOUND = "user not found";
-
     private static final String USER_SVC_USER_NOT_FOUND = "USER_SVC_USER_NOT_FOUND";
-
     // --------------------------------------------------------- Class Variables
     // ----------------------------------------------------- Static Initializers
     // ------------------------------------------------------ Instance Variables
     @Autowired
     private UserDAO userDAO;
-
     @Autowired
     private RoleDAO roleDAO;
-
     @Autowired
     private PermissionDAO permissionDAO;
-
     @Autowired
     private UserRolesDAO userRolesDAO;
-
     @Autowired
     private RolePermissionsDAO rolePermissionsDAO;
 
@@ -286,8 +275,8 @@ public class UserServicePojo extends BaseServicePojo implements UserService {
             userDAO.deleteBy(tenantID, userID);
             result = true;
         } catch (PersistenceException pe) {
-            throw new ApplicationException(USER_SVC_0005,
-                    UNABLE_TO_DELETE_USER, pe);
+            throw new ApplicationException(USER_SVC_0005, UNABLE_TO_DELETE_USER,
+                    pe);
         }
         return result;
     }

@@ -17,7 +17,6 @@ import javax.persistence.MappedSuperclass;
 public class AbstractEntity implements Serializable {
     // --------------------------------------------------------------- Constants
     private static final long serialVersionUID = -7760256970259070626L;
-
     // --------------------------------------------------------- Class Variables
     // ----------------------------------------------------- Static Initializers
     // ------------------------------------------------------ Instance Variables

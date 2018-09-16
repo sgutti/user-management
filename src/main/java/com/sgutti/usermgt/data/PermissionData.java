@@ -16,9 +16,7 @@ public class PermissionData implements BaseData {
     // ----------------------------------------------------- Static Initializers
     // ------------------------------------------------------ Instance Variables
     private Long permissionID;
-
     private String name;
-
     private String description;
 
     // ------------------------------------------------------------ Constructors

@@ -11,12 +11,10 @@ package com.sgutti.core.exception;
 public class ApplicationException extends Exception {
     // --------------------------------------------------------------- Constants
     private static final long serialVersionUID = 7785127800768768454L;
-
     // --------------------------------------------------------- Class Variables
     // ----------------------------------------------------- Static Initializers
     // ------------------------------------------------------ Instance Variables
     private final String errorCode;
-
     private final String errorMessage;
 
     // ------------------------------------------------------------ Constructors

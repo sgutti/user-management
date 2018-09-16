@@ -22,14 +22,11 @@ import javax.persistence.Table;
 public class PermissionAction implements Serializable {
     // --------------------------------------------------------------- Constants
     private static final long serialVersionUID = -7013956769496214844L;
-
     // --------------------------------------------------------- Class Variables
     // ----------------------------------------------------- Static Initializers
     // ------------------------------------------------------ Instance Variables
     private Long actionID;
-
     private String name;
-
     private Integer mask;
 
     // ------------------------------------------------------------ Constructors

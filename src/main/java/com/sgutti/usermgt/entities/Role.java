@@ -30,16 +30,12 @@ import javax.persistence.Table;
 public class Role extends BaseEntity {
     // --------------------------------------------------------------- Constants
     private static final long serialVersionUID = -1759965866316826372L;
-
     // --------------------------------------------------------- Class Variables
     // ----------------------------------------------------- Static Initializers
     // ------------------------------------------------------ Instance Variables
     private Long roleID;
-
     private String name;
-
     private String description;
-
     private Collection<Permission> permissions;
 
     // ------------------------------------------------------------ Constructors

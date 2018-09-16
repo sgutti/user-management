@@ -18,13 +18,9 @@ public class RoleData implements BaseData {
     // ----------------------------------------------------- Static Initializers
     // ------------------------------------------------------ Instance Variables
     private Long roleID;
-
     private String name;
-
     private String description;
-
     private List<PermissionData> permissions;
-
     private List<Long> permissionIDs;
 
     // ------------------------------------------------------------ Constructors

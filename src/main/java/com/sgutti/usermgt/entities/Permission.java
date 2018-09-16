@@ -28,22 +28,15 @@ import org.hibernate.annotations.LazyCollectionOption;
 public class Permission implements Serializable {
     // --------------------------------------------------------------- Constants
     private static final long serialVersionUID = 2735685674103566146L;
-
     public static final int CORE = -1;
-
     public static final int SYSTEM = 0;
-
     // --------------------------------------------------------- Class Variables
     // ----------------------------------------------------- Static Initializers
     // ------------------------------------------------------ Instance Variables
     private Long permissionID;
-
     private String name;
-
     private String description;
-
     private Integer type;
-
     private List<PermissionAction> actions;
 
     // ------------------------------------------------------------ Constructors

@@ -17,12 +17,10 @@ import javax.persistence.Embeddable;
 public class UserRolePK implements Serializable {
     // --------------------------------------------------------------- Constants
     private static final long serialVersionUID = -5094482122847387408L;
-
     // --------------------------------------------------------- Class Variables
     // ----------------------------------------------------- Static Initializers
     // ------------------------------------------------------ Instance Variables
     private String userID;
-
     private Long roleID;
 
     // ------------------------------------------------------------ Constructors

@@ -17,16 +17,14 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "BA_ROLE_PERMISSIONS")
-@IdClass(RolePermissionsPK.class) 
-public class RolePermissions implements Serializable { 
+@IdClass(RolePermissionsPK.class)
+public class RolePermissions implements Serializable {
     // --------------------------------------------------------------- Constants
     private static final long serialVersionUID = -3975543249406890034L;
-
     // --------------------------------------------------------- Class Variables
     // ----------------------------------------------------- Static Initializers
     // ------------------------------------------------------ Instance Variables
     private Long permissionID;
-
     private Long roleID;
 
     // ------------------------------------------------------------ Constructors
