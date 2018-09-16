@@ -66,53 +66,40 @@ public class UserSpecs {
                         criteriaBuilder.equal(root.get("tenantID"), tenantID));
                 String firstNameStr = null;
                 String lastNameStr = null;
-                // This list will contain all Predicates (where clauses)
                 if (exactMatch) {
-                    firstNameStr = firstName;
-                    lastNameStr = lastName;
-                } else {
                     if (StringUtils.isNotBlank(firstName)) {
-                        firstNameStr = WILDCARD + firstName + WILDCARD;
-                    } else {
-                        firstNameStr = WILDCARD + firstName;
+                        resultPredicate.getExpressions().add(criteriaBuilder
+                                .equal(root.get("firstName"), firstName));
                     }
                     if (StringUtils.isNotBlank(lastName)) {
-                        lastNameStr = WILDCARD + lastName + WILDCARD;
-                    } else {
-                        lastNameStr = WILDCARD + lastName;
+                        resultPredicate.getExpressions().add(criteriaBuilder
+                                .equal(root.get("lastName"), lastName));
                     }
+                    return resultPredicate;
                 }
-                if (exactMatch) {
-                    if (StringUtils.isNotBlank(firstNameStr)) {
-                        resultPredicate.getExpressions().add(criteriaBuilder
-                                .equal(root.get("firstName"), firstNameStr));
-                    }
-                    if (StringUtils.isNotBlank(lastNameStr)) {
-                        resultPredicate.getExpressions().add(criteriaBuilder
-                                .equal(root.get("lastName"), lastNameStr));
-                    }
-                } else {
-                    Predicate fn = null;
-                    Predicate ln = null;
-                    if (StringUtils.isNotBlank(firstNameStr)) {
-                        fn = criteriaBuilder.like(
-                                criteriaBuilder
-                                        .lower(root.<String> get("firstName")),
-                                firstNameStr);
-                    }
-                    if (StringUtils.isNotBlank(lastNameStr)) {
-                        ln = criteriaBuilder.like(
-                                criteriaBuilder
-                                        .lower(root.<String> get("lastName")),
-                                lastNameStr);
-                    }
-                    if (fn != null) {
-                        resultPredicate = criteriaBuilder.and(fn);
-                    } else if (ln != null) {
-                        resultPredicate = criteriaBuilder.and(ln);
-                    }
-                    resultPredicate.getExpressions().add(criteriaBuilder
-                            .equal(root.get("tenantID"), tenantID));
+                // This list will contain all Predicates (where clauses)
+                firstNameStr = firstName;
+                if (StringUtils.isNotBlank(firstName)) {
+                    firstNameStr = WILDCARD + firstName + WILDCARD;
+                }
+                //
+                lastNameStr = lastName;
+                if (StringUtils.isNotBlank(lastName)) {
+                    lastNameStr = WILDCARD + lastName + WILDCARD;
+                }
+                if (StringUtils.isNotBlank(firstNameStr)) {
+                    Predicate fn = criteriaBuilder.like(
+                            criteriaBuilder
+                                    .lower(root.<String> get("firstName")),
+                            firstNameStr);
+                    resultPredicate = criteriaBuilder.and(fn);
+                }
+                if (StringUtils.isNotBlank(lastNameStr)) {
+                    Predicate ln = criteriaBuilder.like(
+                            criteriaBuilder
+                                    .lower(root.<String> get("lastName")),
+                            lastNameStr);
+                    resultPredicate = criteriaBuilder.and(ln);
                 }
                 return resultPredicate;
             }

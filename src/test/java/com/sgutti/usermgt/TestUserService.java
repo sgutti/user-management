@@ -4,6 +4,8 @@
  */
 package com.sgutti.usermgt;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,6 +48,13 @@ public class TestUserService extends BaseTransactionTest {
      */
     @Test
     public void testRetrieveAllUsers() throws ApplicationException {
+        List<UserData> userData = userService.retrieveAllUsers(-1, "test",
+                "test", true);
+        Assert.assertNotNull(userData);
+    }
+
+    @Test
+    public void testRetrieveAllUsersNegative() throws ApplicationException {
         List<UserData> userData = userService.retrieveAllUsers(-1, null, null,
                 false);
         Assert.assertNotNull(userData);
