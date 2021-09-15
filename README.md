@@ -1,2 +1,2 @@
-# user-management
-User Management
+# Initial page
+
